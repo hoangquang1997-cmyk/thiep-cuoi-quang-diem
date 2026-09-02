@@ -131,11 +131,29 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .std-wrap{ text-align:center; padding-top:60px; }
   .std-eyebrow{ letter-spacing:0.45em; font-size:12px; color:var(--gold); font-weight:600; margin-bottom:36px; }
   .envelope{ position:relative; width:min(320px,80vw); aspect-ratio:1.5/1; margin:0 auto 20px; }
-  .env-photo{
-    position:absolute; left:50%; top:-18%; transform:translateX(-50%) rotate(-2deg);
-    width:70%; aspect-ratio:3/4; background:#fff; padding:8px 8px 22px; box-shadow:0 14px 30px rgba(0,0,0,0.22); z-index:2;
+  /* Tối ưu khung ảnh thiệp cưới nằm gọn trong phong bì */
+  .env-photo {
+    position: absolute;
+    left: 50%;
+    top: -15%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 68%;
+    height: 90%;
+    background: #fff;
+    padding: 6px 6px 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    overflow: hidden; /* Cắt bỏ toàn bộ phần thừa ra ngoài viền khung Polaroid */
+    border-radius: 4px;
   }
-  .env-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  .env-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giúp ảnh tự co giãn vừa vặn mà không bị méo */
+    object-position: top center; /* Ưu tiên hiển thị mặt và dáng cô dâu chú rể */
+    display: block;
+  }
   .env-body{
     position:absolute; inset:0; z-index:3; background:var(--maroon-deep);
     clip-path:polygon(0 22%, 50% 62%, 100% 22%, 100% 100%, 0 100%);
