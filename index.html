@@ -197,24 +197,25 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .ceremony-col .cc-line b{ color:var(--gold); }
 
   /* ==================== ALBUM CAROUSEL ==================== */
-  /* ==================== ALBUM COVERFLOW ==================== */
+  /* ==================== ALBUM COVERFLOW (xoay 3D) ==================== */
 .album-wrap{ text-align:center; }
 .coverflow{
   position:relative; height:min(62vw,420px); max-height:420px;
   display:flex; align-items:center; justify-content:center; margin:40px 0 10px;
-  overflow:hidden;
+  perspective:1300px;
 }
-.cf-track{ position:relative; width:100%; height:100%; }
+.cf-track{ position:relative; width:100%; height:100%; .cf-track{ position:relative; width:100%; height:100%; } }
 .cf-card{
   position:absolute; top:50%; left:50%;
-  width:min(52vw,230px); aspect-ratio:3/4;
+  width:min(52vw,220px); aspect-ratio:3/4;
   background:#fff; padding:7px; box-shadow:0 16px 34px rgba(74,42,34,0.22);
-  transition:transform 0.5s cubic-bezier(.22,.68,0,1.01), opacity 0.5s ease, filter 0.5s ease;
+  transition:transform 0.9s cubic-bezier(.65,.03,.3,1), opacity 0.7s ease;
+  backface-visibility:hidden;
   cursor:pointer;
 }
 .cf-card img{ width:100%; height:100%; object-fit:cover; display:block; }
 .cf-arrow{
-  position:absolute; top:50%; transform:translateY(-50%); z-index:20;
+  position:absolute; top:50%; transform:translateY(-50%); z-index:50;
   width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
   background:rgba(255,255,255,0.85); cursor:pointer; font-size:16px; color:var(--maroon-deep);
   transition:background 0.25s ease;
@@ -705,48 +706,73 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
 ];
 let cfIndex = 0;
 const cfTrack = document.getElementById('cfTrack');
+const cfN = photos.length;
+const CF_ANGLE = 30;      // độ xoay giữa mỗi ảnh — tăng/giảm để ảnh xoay nhiều/ít hơn
+const CF_RADIUS = 230;    // bán kính vòng tròn (px) — tăng để ảnh dạt xa nhau hơn
+const CF_VISIBLE = 3;     // số ảnh mỗi bên còn hiển thị (ảnh xa hơn sẽ ẩn hẳn)
 
-function renderCoverflow(){
-  cfTrack.innerHTML = '';
-  const n = photos.length;
-  const visible = 2; // số ảnh hiển thị mỗi bên cạnh ảnh giữa
-  for(let off = -visible; off <= visible; off++){
-    const idx = (cfIndex + off + n) % n;
-    const card = document.createElement('div');
-    card.className = 'cf-card';
-    const abs = Math.abs(off);
-    const scale = 1 - abs * 0.22;
-    const opacity = 1 - abs * 0.38;
-    const xShift = off * 46; // % dịch ngang mỗi lớp
-    card.style.transform = 'translate(-50%,-50%) translateX(' + xShift + '%) scale(' + scale + ')';
-    card.style.opacity = Math.max(opacity, 0);
-    card.style.zIndex = 10 - abs;
-    card.style.filter = abs === 0 ? 'none' : 'saturate(0.85)';
-    card.innerHTML = '<img src="' + photos[idx] + '" alt="Ảnh cưới ' + (idx+1) + '">';
-    if(off !== 0){
-      card.addEventListener('click', () => { cfIndex = idx; renderCoverflow(); });
+// Tạo sẵn toàn bộ thẻ ảnh 1 lần (giữ nguyên trong DOM để chuyển động mượt, không giật)
+const cfCards = photos.map((src, i) => {
+  const card = document.createElement('div');
+  card.className = 'cf-card';
+  card.innerHTML = '<img src="' + src + '" alt="Ảnh cưới ' + (i+1) + '">';
+  card.addEventListener('click', () => { cfIndex = i; updateCoverflow(); restartCfAutoAfterPause(); });
+  cfTrack.appendChild(card);
+  return card;
+});
+
+function updateCoverflow(){
+  cfCards.forEach((card, i) => {
+    // khoảng cách ngắn nhất theo vòng tròn tới ảnh đang active
+    let d = i - cfIndex;
+    if(d > cfN/2) d -= cfN;
+    if(d < -cfN/2) d += cfN;
+
+    const abs = Math.abs(d);
+    if(abs > CF_VISIBLE){
+      card.style.opacity = 0;
+      card.style.pointerEvents = 'none';
+      card.style.zIndex = 0;
+      return;
     }
-    cfTrack.appendChild(card);
-  }
+    const angle = d * CF_ANGLE;
+    const scale = Math.max(1 - abs * 0.14, 0.55);
+    const opacity = Math.max(1 - abs * 0.3, 0);
+    card.style.transform = 'translate(-50%,-50%) rotateY(' + angle + 'deg) translateZ(' + CF_RADIUS + 'px) scale(' + scale + ')';
+    card.style.opacity = opacity;
+    card.style.pointerEvents = 'auto';
+    card.style.zIndex = 100 - abs;
+    card.style.filter = abs === 0 ? 'none' : 'saturate(0.85)';
+  });
   document.getElementById('cfPos').textContent = cfIndex + 1;
-  document.getElementById('cfTotal').textContent = n;
+  document.getElementById('cfTotal').textContent = cfN;
 }
+
 document.getElementById('cfPrev').addEventListener('click', () => {
-  cfIndex = (cfIndex - 1 + photos.length) % photos.length; renderCoverflow();
+  cfIndex = (cfIndex - 1 + cfN) % cfN; updateCoverflow(); restartCfAutoAfterPause();
 });
 document.getElementById('cfNext').addEventListener('click', () => {
-  cfIndex = (cfIndex + 1) % photos.length; renderCoverflow();
+  cfIndex = (cfIndex + 1) % cfN; updateCoverflow(); restartCfAutoAfterPause();
 });
-// vuốt trên điện thoại
-let touchStartX = 0;
+
+// vuốt tay trên điện thoại
+let cfTouchStartX = 0;
 const cfEl = document.querySelector('.coverflow');
-cfEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+cfEl.addEventListener('touchstart', e => { cfTouchStartX = e.touches[0].clientX; });
 cfEl.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  if(dx > 40){ cfIndex = (cfIndex - 1 + photos.length) % photos.length; renderCoverflow(); }
-  else if(dx < -40){ cfIndex = (cfIndex + 1) % photos.length; renderCoverflow(); }
+  const dx = e.changedTouches[0].clientX - cfTouchStartX;
+  if(dx > 40){ cfIndex = (cfIndex - 1 + cfN) % cfN; updateCoverflow(); restartCfAutoAfterPause(); }
+  else if(dx < -40){ cfIndex = (cfIndex + 1) % cfN; updateCoverflow(); restartCfAutoAfterPause(); }
 });
-renderCoverflow();
+
+// tự động chuyển ảnh
+let cfAutoTimer = null;
+function startCfAuto(){ stopCfAuto(); cfAutoTimer = setInterval(() => { cfIndex = (cfIndex + 1) % cfN; updateCoverflow(); }, 3000); }
+function stopCfAuto(){ if(cfAutoTimer){ clearInterval(cfAutoTimer); cfAutoTimer = null; } }
+function restartCfAutoAfterPause(){ stopCfAuto(); setTimeout(startCfAuto, 4000); }
+
+updateCoverflow();
+startCfAuto();
 
   let totalGuests = 0, totalForms = 0;
   document.getElementById('rsvpForm').addEventListener('submit', function(e){
