@@ -184,9 +184,10 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .parent-block .pb-name{ font-size:15.5px; font-weight:500; line-height:1.9; }
   .parent-block .pb-addr{ font-size:12.5px; color:var(--text-on-maroon-soft); line-height:1.7; margin-top:10px; }
   .announce-note{ text-align:center; font-size:13px; letter-spacing:0.12em; color:var(--text-on-maroon-soft); text-transform:uppercase; margin-bottom:6px; }
+  .announce-note--main{ font-size:20px; letter-spacing:0.16em; color:#FFCF0D; font-weight:600; }
   .announce-note.sub{ margin-bottom:36px; }
   .couple-announce{ text-align:center; }
-  .couple-announce .ca-name{ font-size:clamp(28px,6vw,40px); margin-bottom:8px; }
+  .couple-announce .ca-name{ font-size:clamp(28px,6vw,40px); margin-bottom:8px; font-weight:700; }
   .couple-announce .ca-role{ font-size:12px; letter-spacing:0.3em; color:var(--gold); text-transform:uppercase; margin-bottom:30px; }
   .ca-and{ font-size:26px; color:var(--gold); font-style:italic; margin:14px 0; display:block; font-family:'Playfair Display',serif; }
   .ceremony-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(241,227,206,0.16); max-width:600px; margin:44px auto 0; border:1px solid rgba(241,227,206,0.16); }
@@ -204,7 +205,7 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   display:flex; align-items:center; justify-content:center; margin:40px 0 10px;
   perspective:1300px;
 }
-.cf-track{ position:relative; width:100%; height:100%; .cf-track{ position:relative; width:100%; height:100%; } }
+.cf-track{ position:relative; width:100%; height:100%; }
 .cf-card{
   position:absolute; top:50%; left:50%;
   width:min(52vw,220px); aspect-ratio:3/4;
@@ -233,8 +234,12 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .countdown-card{ background:var(--maroon-deep); color:var(--text-on-maroon); padding:60px 30px; text-align:center; }
   .countdown-card .ct-title{ font-size:clamp(22px,4vw,28px); margin-bottom:8px; }
   .countdown-card .ct-sub{ font-size:15px; letter-spacing:0.05em; color:var(--text-on-maroon-soft); margin-bottom:30px; }
-  .ct-when{ display:flex; justify-content:center; gap:34px; margin-bottom:30px; flex-wrap:wrap; }
+  .ct-when{ display:flex; justify-content:center; gap:34px; margin-bottom:22px; flex-wrap:wrap; }
   .ct-when .w-day{ font-size:15px; letter-spacing:0.08em; color:var(--gold); }
+  .ct-fam-times{ display:flex; justify-content:center; gap:40px; margin-bottom:30px; flex-wrap:wrap; }
+  .ct-fam{ display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .ct-fam-label{ font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-on-maroon-soft); }
+  .ct-fam-time{ font-family:'Playfair Display',serif; font-size:22px; color:var(--cream); font-weight:600; }
   .ct-big{ display:flex; align-items:baseline; justify-content:center; gap:16px; margin-bottom:8px; }
   .ct-big .num{ font-size:clamp(56px,12vw,84px); line-height:1; color:var(--cream); font-weight:600; }
   .ct-big .mo{ text-align:left; font-size:15px; letter-spacing:0.06em; color:var(--text-on-maroon-soft); }
@@ -353,6 +358,17 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .music-fab .bar:nth-child(3){ height:13px; animation-delay:0.3s; }
   @keyframes eqbar{ 0%,100%{ transform:scaleY(0.4);} 50%{ transform:scaleY(1);} }
 
+  .track-select-wrap{
+    position:fixed; bottom:84px; right:24px; z-index:1000;
+    background:var(--cream); border:1px solid var(--line); border-radius:999px;
+    padding:8px 14px; box-shadow:0 8px 22px rgba(0,0,0,0.18);
+    max-width:200px;
+  }
+  .track-select-wrap select{
+    border:none; background:transparent; font-family:'Montserrat',sans-serif;
+    font-size:12px; color:var(--text-on-cream); outline:none; width:100%; cursor:pointer;
+  }
+
   /* ==================== FOOTER ==================== */
   .footer{ text-align:center; padding:70px 24px 50px; background:var(--maroon-deep); color:var(--text-on-maroon); }
   .footer p{ font-size:14px; color:var(--text-on-maroon-soft); margin-top:10px; }
@@ -402,7 +418,6 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
 <!-- ==================== ANNOUNCEMENT ==================== -->
 <section class="announce-card reveal">
   <div class="floral-corner br" style="opacity:0.35;"><svg viewBox="0 0 150 150"><path d="M0 0 C 26 26, 40 52, 26 78 M0 0 C26 13, 52 26, 78 26" stroke="#C6A15B" stroke-width="1.6" fill="none"/><circle cx="18" cy="18" r="7" fill="#D9BE8C"/><circle cx="44" cy="10" r="4.4" fill="#C6A15B"/><circle cx="10" cy="44" r="4.4" fill="#C6A15B"/></svg></div>
-  <div class="eyebrow">Trân trọng báo tin</div>
   <div class="announce-title">Hôn Lễ Được Cử Hành</div>
 
   <div class="parents-grid">
@@ -419,7 +434,7 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
     </div>
   </div>
 
-  <div class="announce-note">Trân trọng báo tin</div>
+  <div class="announce-note announce-note--main">Trân trọng báo tin</div>
   <div class="announce-note sub">Lễ thành hôn của con chúng tôi</div>
 
   <div class="couple-announce">
@@ -475,24 +490,62 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   </div>
 </section>
 
-<!-- ==================== COUNTDOWN + CALENDAR ==================== -->
-<section class="countdown-card reveal">
-  <div class="ct-title">Thông Tin Tiệc Cưới</div>
-  <div class="ct-sub">Tiệc cưới nhà trai sẽ diễn ra vào lúc:</div>
-  <div class="ct-when"><span class="w-day">THỨ BA</span><span class="w-day">16:30</span></div>
-  <div class="ct-big">
-    <div class="num" id="ct-date">29</div>
-    <div class="mo">THÁNG 09<br>2026</div>
-  </div>
-  <div class="ct-lunar">(Tức ngày 19 tháng 8 năm Bính Ngọ)</div>
-  <div class="ct-countline">Cùng đếm ngược</div>
-  <div class="ct-live" id="ct-live">— ngày — giờ — phút — giây</div>
+<!-- ==================== THÔNG TIN TIỆC CƯỚI (đếm ngược + lịch + địa điểm) ==================== -->
+<section class="reveal">
+  <div class="countdown-card">
+    <div class="ct-title">Thông Tin Tiệc Cưới</div>
+    <div class="ct-sub">Tiệc cưới sẽ diễn ra vào lúc:</div>
+    <div class="ct-when"><span class="w-day">THỨ BA · 29.09.2026</span></div>
+    <div class="ct-fam-times">
+      <div class="ct-fam"><span class="ct-fam-label">Nhà Trai</span><span class="ct-fam-time">16:30</span></div>
+      <div class="ct-fam"><span class="ct-fam-label">Nhà Gái</span><span class="ct-fam-time">11:30</span></div>
+    </div>
+    <div class="ct-big">
+      <div class="num" id="ct-date">29</div>
+      <div class="mo">THÁNG 09<br>2026</div>
+    </div>
+    <div class="ct-lunar">(Tức ngày 19 tháng 8 năm Bính Ngọ)</div>
+    <div class="ct-countline">Cùng đếm ngược</div>
+    <div class="ct-live" id="ct-live">— ngày — giờ — phút — giây</div>
 
-  <div class="cal-card">
-    <div class="cal-month">Tháng 9 / 2026</div>
-    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-card">
+      <div class="cal-month">Tháng 9 / 2026</div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <button class="add-cal-link" id="addToCal" type="button">Thêm vào lịch</button>
   </div>
-  <button class="add-cal-link" id="addToCal" type="button">Thêm vào lịch</button>
+
+  <div class="section cream-bg" style="padding-top:70px;">
+
+    <div class="venue-block">
+      <div class="eyebrow venue-eyebrow">Tiệc cưới nhà trai sẽ tổ chức tại</div>
+      <div class="venue-title">Cung Đường Bàu Hồ</div>
+      <div class="venue-addr">Khu phố Ca Công, phường Hoài Nhơn Đông, Gia Lai<br> Vào lúc 16:30</div>
+      <div class="map-frame">
+        <a class="map-open-btn" href="https://maps.app.goo.gl/5vQLZ1AfAEQE36E19" target="_blank" rel="noopener">Mở trong Maps ↗</a>
+        <iframe loading="lazy" src="https://www.google.com/maps?q=14.500014,109.081224&z=17&output=embed"></iframe>
+      </div>
+      <div class="venue-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fmaps.app.goo.gl%2F5vQLZ1AfAEQE36E19" alt="QR bản đồ nhà trai">
+        <span>Quét mã để mở bản đồ nhà trai</span>
+      </div>
+    </div>
+
+    <div class="venue-block">
+      <div class="eyebrow venue-eyebrow">Tiệc cưới nhà gái sẽ tổ chức tại</div>
+      <div class="venue-title">Nhà Văn Hoá KP Thiện Đức</div>
+      <div class="venue-addr">Khu phố Thiện Đức, phường Hoài Nhơn Đông, Gia Lai<br> Vào lúc 11:30</div>
+      <div class="map-frame">
+        <a class="map-open-btn" href="https://maps.app.goo.gl/k5n3kQ5GQYnxCQTU8" target="_blank" rel="noopener">Mở trong Maps ↗</a>
+        <iframe loading="lazy" src="https://www.google.com/maps?q=14.4956776,109.0788421&z=17&output=embed"></iframe>
+      </div>
+      <div class="venue-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fmaps.app.goo.gl%2Fk5n3kQ5GQYnxCQTU8" alt="QR bản đồ nhà gái">
+        <span>Quét mã để mở bản đồ nhà gái</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ==================== RSVP ==================== -->
@@ -500,63 +553,27 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   <div class="rsvp-card">
     <h2>Xác Nhận Tham Dự</h2>
     <p>Sự hiện diện của bạn là niềm vinh hạnh cho gia đình chúng tôi. Xin xác nhận để chúng tôi chuẩn bị chu đáo nhất.</p>
-    <form id="rsvpForm">
+    <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeKKatKVxldSyARO9wPcgEl1f891UrXvRLx1vP3g878GWIZrQ/formResponse" method="POST" target="hidden_iframe">
       <div class="rsvp-field">
         <label>Tên của bạn</label>
-        <input type="text" id="name" placeholder="Nhập tên của bạn" required>
+        <input type="text" name="entry.95184211" id="name" placeholder="Nhập tên của bạn" required>
       </div>
       <div class="rsvp-field">
         <label>Bạn sẽ đến chứ?</label>
         <div class="rsvp-choice">
-          <label><input type="radio" name="attend" value="yes" checked> Tôi sẽ đến</label>
-          <label><input type="radio" name="attend" value="no"> Rất tiếc, tôi không thể đến</label>
+          <label><input type="radio" name="entry.1378068038" value="Có, tôi sẽ đến" checked> Tôi sẽ đến</label>
+          <label><input type="radio" name="entry.1378068038" value="Rất tiếc, tôi không thể đến"> Rất tiếc, tôi không thể đến</label>
         </div>
       </div>
       <div class="rsvp-field">
         <label>Số người tham dự (kể cả bạn)</label>
-        <input type="number" id="guests" min="1" value="1">
+        <input type="number" name="entry.159860823" id="guests" min="1" value="1">
       </div>
       <button type="submit" class="rsvp-submit">Gửi xác nhận</button>
       <div class="rsvp-note" id="rsvpNote">Cảm ơn bạn! Lời xác nhận đã được ghi lại.</div>
     </form>
-    <div class="rsvp-summary" id="rsvpSummary">
-      Trong phiên này đã có <b id="rsvpTotalGuests">0</b> khách xác nhận qua <b id="rsvpTotalForms">0</b> lượt phản hồi.
-      <br>(Số liệu chỉ hiển thị tạm trên trình duyệt — xem hướng dẫn lưu dữ liệu thật ở cuối file.)
-    </div>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
   </div>
-</section>
-
-<!-- ==================== VENUE + MAP (cả hai bên) ==================== -->
-<section class="section cream-bg reveal">
-
-  <div class="venue-block">
-    <div class="eyebrow venue-eyebrow">Tiệc cưới nhà trai sẽ tổ chức tại</div>
-    <div class="venue-title">Cung Đường Bàu Hồ</div>
-    <div class="venue-addr">Khu phố Ca Công, phường Hoài Nhơn Đông, Gia Lai<br> Vào lúc 16:30</div>
-    <div class="map-frame">
-      <a class="map-open-btn" href="https://maps.app.goo.gl/5vQLZ1AfAEQE36E19" target="_blank" rel="noopener">Mở trong Maps ↗</a>
-      <iframe loading="lazy" src="https://www.google.com/maps?q=14.500014,109.081224&z=17&output=embed"></iframe>
-    </div>
-    <div class="venue-qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fmaps.app.goo.gl%2F5vQLZ1AfAEQE36E19" alt="QR bản đồ nhà trai">
-      <span>Quét mã để mở bản đồ nhà trai</span>
-    </div>
-  </div>
-
-  <div class="venue-block">
-    <div class="eyebrow venue-eyebrow">Tiệc cưới nhà gái sẽ tổ chức tại</div>
-    <div class="venue-title">Nhà Văn Hoá KP Thiện Đức</div>
-    <div class="venue-addr">Khu phố Thiện Đức, phường Hoài Nhơn Đông, Gia Lai<br> Vào lúc 11:30</div>
-    <div class="map-frame">
-      <a class="map-open-btn" href="https://maps.app.goo.gl/k5n3kQ5GQYnxCQTU8" target="_blank" rel="noopener">Mở trong Maps ↗</a>
-      <iframe loading="lazy" src="https://www.google.com/maps?q=14.4956776,109.0788421&z=17&output=embed"></iframe>
-    </div>
-    <div class="venue-qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fmaps.app.goo.gl%2Fk5n3kQ5GQYnxCQTU8" alt="QR bản đồ nhà gái">
-      <span>Quét mã để mở bản đồ nhà gái</span>
-    </div>
-  </div>
-
 </section>
 
 <!-- ==================== GUESTBOOK ==================== -->
@@ -613,6 +630,13 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   <div class="visit-counter" id="visitCounter">Đang tải lượt truy cập…</div>
 </footer>
 
+<div class="track-select-wrap">
+  <select id="trackSelect">
+    <option value="0">Akuma No Ko (Wedding ver.)</option>
+    <option value="1">Homecoming</option>
+    <option value="2">Your Tears Are Mine (Piano cover)</option>
+  </select>
+</div>
 <button class="music-fab" id="musicFab" title="Bật/tắt nhạc nền">
   <span class="bar"></span><span class="bar"></span><span class="bar"></span>
 </button>
@@ -774,19 +798,18 @@ function restartCfAutoAfterPause(){ stopCfAuto(); setTimeout(startCfAuto, 4000);
 updateCoverflow();
 startCfAuto();
 
-  let totalGuests = 0, totalForms = 0;
-  document.getElementById('rsvpForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const attend = this.querySelector('input[name=attend]:checked').value;
-    const guests = parseInt(document.getElementById('guests').value || '1', 10);
-    if(attend === 'yes'){ totalGuests += guests; }
-    totalForms += 1;
-    document.getElementById('rsvpTotalGuests').textContent = totalGuests;
-    document.getElementById('rsvpTotalForms').textContent = totalForms;
-    document.getElementById('rsvpSummary').classList.add('show');
-    document.getElementById('rsvpNote').classList.add('show');
-    this.reset();
-    document.getElementById('guests').value = 1;
+  // ---------- RSVP: gửi ngầm về Google Form (Sheet), giữ giao diện riêng ----------
+  let rsvpSubmitted = false;
+  document.getElementById('rsvpForm').addEventListener('submit', function(){
+    rsvpSubmitted = true; // form submit tự nhiên tới iframe ẩn, không chặn hành vi mặc định
+  });
+  document.getElementById('hidden_iframe').addEventListener('load', function(){
+    if(rsvpSubmitted){
+      document.getElementById('rsvpNote').classList.add('show');
+      document.getElementById('rsvpForm').reset();
+      document.getElementById('guests').value = 1;
+      rsvpSubmitted = false;
+    }
   });
 
   const wishes = [];
@@ -829,7 +852,14 @@ startCfAuto();
   });
 
   const audio = document.getElementById('bgAudio');
+  const audioSource = document.getElementById('audioSource');
   const musicFab = document.getElementById('musicFab');
+  const trackSelect = document.getElementById('trackSelect');
+  const tracks = [
+    'assets/audio/Attack on Titan Akuma No Ko - Wedding Version.mp3',
+    'assets/audio/Homecoming.mp3',
+    'assets/audio/Your_Tears_Are_Mine_Piano_ver.mp3'
+  ];
   let isPlaying = false;
   musicFab.classList.add('paused');
   musicFab.addEventListener('click', function(){
@@ -839,6 +869,14 @@ startCfAuto();
       audio.play().then(()=>{ isPlaying = true; musicFab.classList.remove('paused'); }).catch(()=>{
         alert('Chưa có file nhạc — hãy thêm file audio thật theo hướng dẫn ở cuối file HTML.');
       });
+    }
+  });
+  trackSelect.addEventListener('change', function(){
+    const wasPlaying = isPlaying;
+    audioSource.src = tracks[parseInt(this.value, 10)];
+    audio.load();
+    if(wasPlaying){
+      audio.play().then(()=>{ isPlaying = true; musicFab.classList.remove('paused'); }).catch(()=>{});
     }
   });
 
