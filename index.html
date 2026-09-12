@@ -184,10 +184,9 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .parent-block .pb-name{ font-size:15.5px; font-weight:500; line-height:1.9; }
   .parent-block .pb-addr{ font-size:12.5px; color:var(--text-on-maroon-soft); line-height:1.7; margin-top:10px; }
   .announce-note{ text-align:center; font-size:13px; letter-spacing:0.12em; color:var(--text-on-maroon-soft); text-transform:uppercase; margin-bottom:6px; }
-  .announce-note--main{ font-size:20px; letter-spacing:0.16em; color:#FFCF0D; font-weight:600; }
   .announce-note.sub{ margin-bottom:36px; }
   .couple-announce{ text-align:center; }
-  .couple-announce .ca-name{ font-size:clamp(28px,6vw,40px); margin-bottom:8px; font-weight:700; }
+  .couple-announce .ca-name{ font-size:clamp(28px,6vw,40px); margin-bottom:8px; }
   .couple-announce .ca-role{ font-size:12px; letter-spacing:0.3em; color:var(--gold); text-transform:uppercase; margin-bottom:30px; }
   .ca-and{ font-size:26px; color:var(--gold); font-style:italic; margin:14px 0; display:block; font-family:'Playfair Display',serif; }
   .ceremony-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(241,227,206,0.16); max-width:600px; margin:44px auto 0; border:1px solid rgba(241,227,206,0.16); }
@@ -205,7 +204,7 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   display:flex; align-items:center; justify-content:center; margin:40px 0 10px;
   perspective:1300px;
 }
-.cf-track{ position:relative; width:100%; height:100%; }
+.cf-track{ position:relative; width:100%; height:100%; .cf-track{ position:relative; width:100%; height:100%; } }
 .cf-card{
   position:absolute; top:50%; left:50%;
   width:min(52vw,220px); aspect-ratio:3/4;
@@ -234,12 +233,8 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .countdown-card{ background:var(--maroon-deep); color:var(--text-on-maroon); padding:60px 30px; text-align:center; }
   .countdown-card .ct-title{ font-size:clamp(22px,4vw,28px); margin-bottom:8px; }
   .countdown-card .ct-sub{ font-size:15px; letter-spacing:0.05em; color:var(--text-on-maroon-soft); margin-bottom:30px; }
-  .ct-when{ display:flex; justify-content:center; gap:34px; margin-bottom:22px; flex-wrap:wrap; }
+  .ct-when{ display:flex; justify-content:center; gap:34px; margin-bottom:30px; flex-wrap:wrap; }
   .ct-when .w-day{ font-size:15px; letter-spacing:0.08em; color:var(--gold); }
-  .ct-fam-times{ display:flex; justify-content:center; gap:40px; margin-bottom:30px; flex-wrap:wrap; }
-  .ct-fam{ display:flex; flex-direction:column; align-items:center; gap:6px; }
-  .ct-fam-label{ font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-on-maroon-soft); }
-  .ct-fam-time{ font-family:'Playfair Display',serif; font-size:22px; color:var(--cream); font-weight:600; }
   .ct-big{ display:flex; align-items:baseline; justify-content:center; gap:16px; margin-bottom:8px; }
   .ct-big .num{ font-size:clamp(56px,12vw,84px); line-height:1; color:var(--cream); font-weight:600; }
   .ct-big .mo{ text-align:left; font-size:15px; letter-spacing:0.06em; color:var(--text-on-maroon-soft); }
@@ -358,17 +353,6 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   .music-fab .bar:nth-child(3){ height:13px; animation-delay:0.3s; }
   @keyframes eqbar{ 0%,100%{ transform:scaleY(0.4);} 50%{ transform:scaleY(1);} }
 
-  .track-select-wrap{
-    position:fixed; bottom:84px; right:24px; z-index:1000;
-    background:var(--cream); border:1px solid var(--line); border-radius:999px;
-    padding:8px 14px; box-shadow:0 8px 22px rgba(0,0,0,0.18);
-    max-width:200px;
-  }
-  .track-select-wrap select{
-    border:none; background:transparent; font-family:'Montserrat',sans-serif;
-    font-size:12px; color:var(--text-on-cream); outline:none; width:100%; cursor:pointer;
-  }
-
   /* ==================== FOOTER ==================== */
   .footer{ text-align:center; padding:70px 24px 50px; background:var(--maroon-deep); color:var(--text-on-maroon); }
   .footer p{ font-size:14px; color:var(--text-on-maroon-soft); margin-top:10px; }
@@ -418,6 +402,7 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
 <!-- ==================== ANNOUNCEMENT ==================== -->
 <section class="announce-card reveal">
   <div class="floral-corner br" style="opacity:0.35;"><svg viewBox="0 0 150 150"><path d="M0 0 C 26 26, 40 52, 26 78 M0 0 C26 13, 52 26, 78 26" stroke="#C6A15B" stroke-width="1.6" fill="none"/><circle cx="18" cy="18" r="7" fill="#D9BE8C"/><circle cx="44" cy="10" r="4.4" fill="#C6A15B"/><circle cx="10" cy="44" r="4.4" fill="#C6A15B"/></svg></div>
+  <div class="eyebrow">Trân trọng báo tin</div>
   <div class="announce-title">Hôn Lễ Được Cử Hành</div>
 
   <div class="parents-grid">
@@ -434,7 +419,7 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
     </div>
   </div>
 
-  <div class="announce-note announce-note--main">Trân trọng báo tin</div>
+  <div class="announce-note">Trân trọng báo tin</div>
   <div class="announce-note sub">Lễ thành hôn của con chúng tôi</div>
 
   <div class="couple-announce">
@@ -490,62 +475,24 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   </div>
 </section>
 
-<!-- ==================== THÔNG TIN TIỆC CƯỚI (đếm ngược + lịch + địa điểm) ==================== -->
-<section class="reveal">
-  <div class="countdown-card">
-    <div class="ct-title">Thông Tin Tiệc Cưới</div>
-    <div class="ct-sub">Tiệc cưới sẽ diễn ra vào lúc:</div>
-    <div class="ct-when"><span class="w-day">THỨ BA · 29.09.2026</span></div>
-    <div class="ct-fam-times">
-      <div class="ct-fam"><span class="ct-fam-label">Nhà Trai</span><span class="ct-fam-time">16:30</span></div>
-      <div class="ct-fam"><span class="ct-fam-label">Nhà Gái</span><span class="ct-fam-time">11:30</span></div>
-    </div>
-    <div class="ct-big">
-      <div class="num" id="ct-date">29</div>
-      <div class="mo">THÁNG 09<br>2026</div>
-    </div>
-    <div class="ct-lunar">(Tức ngày 19 tháng 8 năm Bính Ngọ)</div>
-    <div class="ct-countline">Cùng đếm ngược</div>
-    <div class="ct-live" id="ct-live">— ngày — giờ — phút — giây</div>
-
-    <div class="cal-card">
-      <div class="cal-month">Tháng 9 / 2026</div>
-      <div class="cal-grid" id="calGrid"></div>
-    </div>
-    <button class="add-cal-link" id="addToCal" type="button">Thêm vào lịch</button>
+<!-- ==================== COUNTDOWN + CALENDAR ==================== -->
+<section class="countdown-card reveal">
+  <div class="ct-title">Thông Tin Tiệc Cưới</div>
+  <div class="ct-sub">Tiệc cưới nhà trai sẽ diễn ra vào lúc:</div>
+  <div class="ct-when"><span class="w-day">16:30</span><span class="w-day">Thứ Ba</span></div>
+  <div class="ct-big">
+    <div class="num" id="ct-date">29</div>
+    <div class="mo">THÁNG 09<br>2026</div>
   </div>
+  <div class="ct-lunar">(Tức ngày 19 tháng 8 năm Bính Ngọ)</div>
+  <div class="ct-countline">Cùng đếm ngược</div>
+  <div class="ct-live" id="ct-live">— ngày — giờ — phút — giây</div>
 
-  <div class="section cream-bg" style="padding-top:70px;">
-
-    <div class="venue-block">
-      <div class="eyebrow venue-eyebrow">Tiệc cưới nhà trai sẽ tổ chức tại</div>
-      <div class="venue-title">Cung Đường Bàu Hồ</div>
-      <div class="venue-addr">Khu phố Ca Công, phường Hoài Nhơn Đông, Gia Lai<br> Vào lúc 16:30</div>
-      <div class="map-frame">
-        <a class="map-open-btn" href="https://maps.app.goo.gl/5vQLZ1AfAEQE36E19" target="_blank" rel="noopener">Mở trong Maps ↗</a>
-        <iframe loading="lazy" src="https://www.google.com/maps?q=14.500014,109.081224&z=17&output=embed"></iframe>
-      </div>
-      <div class="venue-qr">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fmaps.app.goo.gl%2F5vQLZ1AfAEQE36E19" alt="QR bản đồ nhà trai">
-        <span>Quét mã để mở bản đồ nhà trai</span>
-      </div>
-    </div>
-
-    <div class="venue-block">
-      <div class="eyebrow venue-eyebrow">Tiệc cưới nhà gái sẽ tổ chức tại</div>
-      <div class="venue-title">Nhà Văn Hoá KP Thiện Đức</div>
-      <div class="venue-addr">Khu phố Thiện Đức, phường Hoài Nhơn Đông, Gia Lai<br> Vào lúc 11:30</div>
-      <div class="map-frame">
-        <a class="map-open-btn" href="https://maps.app.goo.gl/k5n3kQ5GQYnxCQTU8" target="_blank" rel="noopener">Mở trong Maps ↗</a>
-        <iframe loading="lazy" src="https://www.google.com/maps?q=14.4956776,109.0788421&z=17&output=embed"></iframe>
-      </div>
-      <div class="venue-qr">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fmaps.app.goo.gl%2Fk5n3kQ5GQYnxCQTU8" alt="QR bản đồ nhà gái">
-        <span>Quét mã để mở bản đồ nhà gái</span>
-      </div>
-    </div>
-
+  <div class="cal-card">
+    <div class="cal-month">Tháng 9 / 2026</div>
+    <div class="cal-grid" id="calGrid"></div>
   </div>
+  <button class="add-cal-link" id="addToCal" type="button">Thêm vào lịch</button>
 </section>
 
 <!-- ==================== RSVP ==================== -->
@@ -553,39 +500,45 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   <div class="rsvp-card">
     <h2>Xác Nhận Tham Dự</h2>
     <p>Sự hiện diện của bạn là niềm vinh hạnh cho gia đình chúng tôi. Xin xác nhận để chúng tôi chuẩn bị chu đáo nhất.</p>
-    <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeKKatKVxldSyARO9wPcgEl1f891UrXvRLx1vP3g878GWIZrQ/formResponse" method="POST" target="hidden_iframe">
+    <form id="rsvpForm">
       <div class="rsvp-field">
         <label>Tên của bạn</label>
-        <input type="text" name="entry.95184211" id="name" placeholder="Nhập tên của bạn" required>
+        <input type="text" id="name" placeholder="Nhập tên của bạn" required>
       </div>
       <div class="rsvp-field">
         <label>Bạn sẽ đến chứ?</label>
         <div class="rsvp-choice">
-          <label><input type="radio" name="entry.1378068038" value="Có, tôi sẽ đến" checked> Tôi sẽ đến</label>
-          <label><input type="radio" name="entry.1378068038" value="Rất tiếc, tôi không thể đến"> Rất tiếc, tôi không thể đến</label>
+          <label><input type="radio" name="attend" value="yes" checked> Tôi sẽ đến</label>
+          <label><input type="radio" name="attend" value="no"> Rất tiếc, tôi không thể đến</label>
         </div>
       </div>
       <div class="rsvp-field">
         <label>Số người tham dự (kể cả bạn)</label>
-        <input type="number" name="entry.159860823" id="guests" min="1" value="1">
+        <input type="number" id="guests" min="1" value="1">
       </div>
       <button type="submit" class="rsvp-submit">Gửi xác nhận</button>
       <div class="rsvp-note" id="rsvpNote">Cảm ơn bạn! Lời xác nhận đã được ghi lại.</div>
     </form>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <div class="rsvp-summary" id="rsvpSummary">
+      Trong phiên này đã có <b id="rsvpTotalGuests">0</b> khách xác nhận qua <b id="rsvpTotalForms">0</b> lượt phản hồi.
+      <br>(Số liệu chỉ hiển thị tạm trên trình duyệt — xem hướng dẫn lưu dữ liệu thật ở cuối file.)
+    </div>
   </div>
 </section>
+
+
 
 <!-- ==================== GUESTBOOK ==================== -->
 <section class="guestbook reveal">
   <div class="floral-corner tl" style="opacity:0.6;"><svg viewBox="0 0 150 150"><path d="M0 0 C 26 26, 40 52, 26 78 M0 0 C26 13, 52 26, 78 26" stroke="#6E1A28" stroke-width="1.6" fill="none"/><circle cx="18" cy="18" r="8" fill="#6E1A28" opacity="0.75"/><circle cx="46" cy="8" r="5" fill="#C6A15B" opacity="0.7"/><circle cx="8" cy="46" r="5" fill="#C6A15B" opacity="0.7"/><circle cx="30" cy="40" r="4" fill="#6E1A28" opacity="0.55"/></svg></div>
   <div class="gb-card">
     <h2>Sổ Lưu Bút</h2>
-    <form id="wishForm">
-      <div class="gb-field"><input type="text" id="wishName" placeholder="Nhập tên*" required></div>
-      <div class="gb-field"><textarea id="wishText" rows="3" placeholder="Nhập lời chúc*" required></textarea></div>
-      <button type="submit" class="gb-submit">Gửi lời chúc</button>
-    </form>
+    <form id="wishForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfovaNL4CQgse4lFJ66tWHEqm4-HAH5_UfriP_L-rkRzzui4g/formResponse" method="POST" target="hidden_iframe_wish">
+  <div class="gb-field"><input type="text" id="wishName" name="entry.1905296617" placeholder="Nhập tên*" required></div>
+  <div class="gb-field"><textarea id="wishText" name="entry.981937593" rows="3" placeholder="Nhập lời chúc*" required></textarea></div>
+  <button type="submit" class="gb-submit">Gửi lời chúc</button>
+</form>
+<iframe name="hidden_iframe_wish" id="hidden_iframe_wish" style="display:none;"></iframe>
     <div class="wish-list" id="wishList"></div>
     <div class="wish-empty" id="wishEmpty">Chưa có lời chúc nào. Hãy là người đầu tiên!</div>
     <div class="download-row">
@@ -630,13 +583,6 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   <div class="visit-counter" id="visitCounter">Đang tải lượt truy cập…</div>
 </footer>
 
-<div class="track-select-wrap">
-  <select id="trackSelect">
-    <option value="0">Akuma No Ko (Wedding ver.)</option>
-    <option value="1">Homecoming</option>
-    <option value="2">Your Tears Are Mine (Piano cover)</option>
-  </select>
-</div>
 <button class="music-fab" id="musicFab" title="Bật/tắt nhạc nền">
   <span class="bar"></span><span class="bar"></span><span class="bar"></span>
 </button>
@@ -798,38 +744,109 @@ function restartCfAutoAfterPause(){ stopCfAuto(); setTimeout(startCfAuto, 4000);
 updateCoverflow();
 startCfAuto();
 
-  // ---------- RSVP: gửi ngầm về Google Form (Sheet), giữ giao diện riêng ----------
-  let rsvpSubmitted = false;
-  document.getElementById('rsvpForm').addEventListener('submit', function(){
-    rsvpSubmitted = true; // form submit tự nhiên tới iframe ẩn, không chặn hành vi mặc định
-  });
-  document.getElementById('hidden_iframe').addEventListener('load', function(){
-    if(rsvpSubmitted){
-      document.getElementById('rsvpNote').classList.add('show');
-      document.getElementById('rsvpForm').reset();
-      document.getElementById('guests').value = 1;
-      rsvpSubmitted = false;
-    }
+  let totalGuests = 0, totalForms = 0;
+  document.getElementById('rsvpForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const attend = this.querySelector('input[name=attend]:checked').value;
+    const guests = parseInt(document.getElementById('guests').value || '1', 10);
+    if(attend === 'yes'){ totalGuests += guests; }
+    totalForms += 1;
+    document.getElementById('rsvpTotalGuests').textContent = totalGuests;
+    document.getElementById('rsvpTotalForms').textContent = totalForms;
+    document.getElementById('rsvpSummary').classList.add('show');
+    document.getElementById('rsvpNote').classList.add('show');
+    this.reset();
+    document.getElementById('guests').value = 1;
   });
 
   const wishes = [];
-  const wishListEl = document.getElementById('wishList');
-  const wishEmptyEl = document.getElementById('wishEmpty');
-  document.getElementById('wishForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const name = document.getElementById('wishName').value.trim();
-    const text = document.getElementById('wishText').value.trim();
-    if(!name || !text) return;
-    wishes.push({name, text});
-    const item = document.createElement('div');
-    item.className = 'wish-item';
-    item.innerHTML = '<div class="w-name"></div><div class="w-text"></div>';
-    item.querySelector('.w-name').textContent = name;
-    item.querySelector('.w-text').textContent = text;
-    wishListEl.prepend(item);
+const wishListEl = document.getElementById('wishList');
+const wishEmptyEl = document.getElementById('wishEmpty');
+const WISH_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY17cIfVRJPUpd2moyH9iZLlo3QvRu1t4N4LwSODEwMqpc6CARhT3T64hZXOaZAjcIXCbZd5XX5YSv/pub?gid=387691977&single=true&output=csv';
+
+function parseCSVLine(line){
+  const result = [];
+  let cur = '';
+  let inQuotes = false;
+  for(let i=0;i<line.length;i++){
+    const c = line[i];
+    if(inQuotes){
+      if(c === '"'){
+        if(line[i+1] === '"'){ cur += '"'; i++; }
+        else { inQuotes = false; }
+      } else { cur += c; }
+    } else {
+      if(c === '"'){ inQuotes = true; }
+      else if(c === ','){ result.push(cur); cur=''; }
+      else { cur += c; }
+    }
+  }
+  result.push(cur);
+  return result;
+}
+
+function parseCSV(text){
+  const rows = [];
+  let cur = '';
+  let inQuotes = false;
+  for(let i=0;i<text.length;i++){
+    const c = text[i];
+    if(c === '"') inQuotes = !inQuotes;
+    if(c === '\n' && !inQuotes){ rows.push(cur); cur = ''; }
+    else if(c !== '\r'){ cur += c; }
+  }
+  if(cur.trim() !== '') rows.push(cur);
+  return rows.map(parseCSVLine);
+}
+
+async function loadWishesFromSheet(){
+  try{
+    const res = await fetch(WISH_CSV_URL + '&_=' + Date.now());
+    const text = await res.text();
+    const rows = parseCSV(text);
+    const dataRows = rows.slice(1).reverse(); // bỏ dòng tiêu đề, mới nhất lên đầu
+    wishListEl.innerHTML = '';
+    if(dataRows.length === 0){ wishEmptyEl.style.display = 'block'; return; }
     wishEmptyEl.style.display = 'none';
-    this.reset();
-  });
+    dataRows.forEach(cols => {
+      const name = (cols[1] || '').trim();
+      const text = (cols[2] || '').trim();
+      if(!name && !text) return;
+      wishes.push({name, text});
+      const item = document.createElement('div');
+      item.className = 'wish-item';
+      item.innerHTML = '<div class="w-name"></div><div class="w-text"></div>';
+      item.querySelector('.w-name').textContent = name;
+      item.querySelector('.w-text').textContent = text;
+      wishListEl.appendChild(item);
+    });
+  } catch(err){
+    console.error('Không tải được lời chúc từ Google Sheet:', err);
+  }
+}
+loadWishesFromSheet();
+let wishSubmitted = false;
+document.getElementById('wishForm').addEventListener('submit', function(e){
+  // KHÔNG preventDefault — để form tự gửi thật tới Google Form qua iframe ẩn
+  const name = document.getElementById('wishName').value.trim();
+  const text = document.getElementById('wishText').value.trim();
+  if(!name || !text){ e.preventDefault(); return; }
+  wishes.push({name, text});
+  const item = document.createElement('div');
+  item.className = 'wish-item';
+  item.innerHTML = '<div class="w-name"></div><div class="w-text"></div>';
+  item.querySelector('.w-name').textContent = name;
+  item.querySelector('.w-text').textContent = text;
+  wishListEl.prepend(item);
+  wishEmptyEl.style.display = 'none';
+  wishSubmitted = true;
+});
+document.getElementById('hidden_iframe_wish').addEventListener('load', function(){
+  if(wishSubmitted){
+    document.getElementById('wishForm').reset();
+    wishSubmitted = false;
+  }
+});
   document.getElementById('downloadWishes').addEventListener('click', function(){
     if(wishes.length === 0){ alert('Chưa có lời chúc nào để tải.'); return; }
     let html = '<html><head><meta charset="utf-8"></head><body>';
@@ -852,14 +869,7 @@ startCfAuto();
   });
 
   const audio = document.getElementById('bgAudio');
-  const audioSource = document.getElementById('audioSource');
   const musicFab = document.getElementById('musicFab');
-  const trackSelect = document.getElementById('trackSelect');
-  const tracks = [
-    'assets/audio/Attack on Titan Akuma No Ko - Wedding Version.mp3',
-    'assets/audio/Homecoming.mp3',
-    'assets/audio/Your_Tears_Are_Mine_Piano_ver.mp3'
-  ];
   let isPlaying = false;
   musicFab.classList.add('paused');
   musicFab.addEventListener('click', function(){
@@ -869,14 +879,6 @@ startCfAuto();
       audio.play().then(()=>{ isPlaying = true; musicFab.classList.remove('paused'); }).catch(()=>{
         alert('Chưa có file nhạc — hãy thêm file audio thật theo hướng dẫn ở cuối file HTML.');
       });
-    }
-  });
-  trackSelect.addEventListener('change', function(){
-    const wasPlaying = isPlaying;
-    audioSource.src = tracks[parseInt(this.value, 10)];
-    audio.load();
-    if(wasPlaying){
-      audio.play().then(()=>{ isPlaying = true; musicFab.classList.remove('paused'); }).catch(()=>{});
     }
   });
 
