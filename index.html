@@ -581,11 +581,12 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
   <div class="floral-corner tl" style="opacity:0.6;"><svg viewBox="0 0 150 150"><path d="M0 0 C 26 26, 40 52, 26 78 M0 0 C26 13, 52 26, 78 26" stroke="#6E1A28" stroke-width="1.6" fill="none"/><circle cx="18" cy="18" r="8" fill="#6E1A28" opacity="0.75"/><circle cx="46" cy="8" r="5" fill="#C6A15B" opacity="0.7"/><circle cx="8" cy="46" r="5" fill="#C6A15B" opacity="0.7"/><circle cx="30" cy="40" r="4" fill="#6E1A28" opacity="0.55"/></svg></div>
   <div class="gb-card">
     <h2>Sổ Lưu Bút</h2>
-    <form id="wishForm">
-      <div class="gb-field"><input type="text" id="wishName" placeholder="Nhập tên*" required></div>
-      <div class="gb-field"><textarea id="wishText" rows="3" placeholder="Nhập lời chúc*" required></textarea></div>
+    <form id="wishForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfovaNL4CQgse4lFJ66tWHEqm4-HAH5_UfriP_L-rkRzzui4g/formResponse" method="POST" target="hidden_iframe_wish">
+      <div class="gb-field"><input type="text" id="wishName" name="entry.1905296617" placeholder="Nhập tên*" required></div>
+      <div class="gb-field"><textarea id="wishText" name="entry.981937593" rows="3" placeholder="Nhập lời chúc*" required></textarea></div>
       <button type="submit" class="gb-submit">Gửi lời chúc</button>
     </form>
+    <iframe name="hidden_iframe_wish" id="hidden_iframe_wish" style="display:none;"></iframe>
     <div class="wish-list" id="wishList"></div>
     <div class="wish-empty" id="wishEmpty">Chưa có lời chúc nào. Hãy là người đầu tiên!</div>
     <div class="download-row">
@@ -815,11 +816,77 @@ startCfAuto();
   const wishes = [];
   const wishListEl = document.getElementById('wishList');
   const wishEmptyEl = document.getElementById('wishEmpty');
+
+  const WISH_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY17cIfVRJPUpd2moyH9iZLlo3QvRu1t4N4LwSODEwMqpc6CARhT3T64hZXOaZAjcIXCbZd5XX5YSv/pub?gid=387691977&single=true&output=csv';
+
+  function parseCSVLine(line){
+    const result = [];
+    let cur = '';
+    let inQuotes = false;
+    for(let i=0;i<line.length;i++){
+      const c = line[i];
+      if(inQuotes){
+        if(c === '"'){
+          if(line[i+1] === '"'){ cur += '"'; i++; }
+          else { inQuotes = false; }
+        } else { cur += c; }
+      } else {
+        if(c === '"'){ inQuotes = true; }
+        else if(c === ','){ result.push(cur); cur=''; }
+        else { cur += c; }
+      }
+    }
+    result.push(cur);
+    return result;
+  }
+
+  function parseCSV(text){
+    const rows = [];
+    let cur = '';
+    let inQuotes = false;
+    for(let i=0;i<text.length;i++){
+      const c = text[i];
+      if(c === '"') inQuotes = !inQuotes;
+      if(c === '\n' && !inQuotes){ rows.push(cur); cur = ''; }
+      else if(c !== '\r'){ cur += c; }
+    }
+    if(cur.trim() !== '') rows.push(cur);
+    return rows.map(parseCSVLine);
+  }
+
+  async function loadWishesFromSheet(){
+    try{
+      const res = await fetch(WISH_CSV_URL + '&_=' + Date.now());
+      const text = await res.text();
+      const rows = parseCSV(text);
+      const dataRows = rows.slice(1).reverse(); // bỏ dòng tiêu đề, mới nhất lên đầu
+      wishListEl.innerHTML = '';
+      if(dataRows.length === 0){ wishEmptyEl.style.display = 'block'; return; }
+      wishEmptyEl.style.display = 'none';
+      dataRows.forEach(cols => {
+        const name = (cols[1] || '').trim();
+        const text = (cols[2] || '').trim();
+        if(!name && !text) return;
+        wishes.push({name, text});
+        const item = document.createElement('div');
+        item.className = 'wish-item';
+        item.innerHTML = '<div class="w-name"></div><div class="w-text"></div>';
+        item.querySelector('.w-name').textContent = name;
+        item.querySelector('.w-text').textContent = text;
+        wishListEl.appendChild(item);
+      });
+    } catch(err){
+      console.error('Không tải được lời chúc từ Google Sheet:', err);
+    }
+  }
+  loadWishesFromSheet();
+
+  let wishSubmitted = false;
   document.getElementById('wishForm').addEventListener('submit', function(e){
-    e.preventDefault();
+    // KHÔNG preventDefault — để form tự gửi thật tới Google Form qua iframe ẩn
     const name = document.getElementById('wishName').value.trim();
     const text = document.getElementById('wishText').value.trim();
-    if(!name || !text) return;
+    if(!name || !text){ e.preventDefault(); return; }
     wishes.push({name, text});
     const item = document.createElement('div');
     item.className = 'wish-item';
@@ -828,7 +895,13 @@ startCfAuto();
     item.querySelector('.w-text').textContent = text;
     wishListEl.prepend(item);
     wishEmptyEl.style.display = 'none';
-    this.reset();
+    wishSubmitted = true;
+  });
+  document.getElementById('hidden_iframe_wish').addEventListener('load', function(){
+    if(wishSubmitted){
+      document.getElementById('wishForm').reset();
+      wishSubmitted = false;
+    }
   });
   document.getElementById('downloadWishes').addEventListener('click', function(){
     if(wishes.length === 0){ alert('Chưa có lời chúc nào để tải.'); return; }
