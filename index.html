@@ -641,7 +641,7 @@ Mục lục hướng dẫn chi tiết nằm ở CUỐI file (ngay trước thẻ
 <button class="music-fab" id="musicFab" title="Bật/tắt nhạc nền">
   <span class="bar"></span><span class="bar"></span><span class="bar"></span>
 </button>
-<audio id="bgAudio" loop>
+<audio id="bgAudio">
   <source id="audioSource" src="assets/audio/Attack on Titan Akuma No Ko - Wedding Version.mp3" type="audio/mpeg">
 </audio>
 
@@ -951,6 +951,13 @@ startCfAuto();
     if(wasPlaying){
       audio.play().then(()=>{ isPlaying = true; musicFab.classList.remove('paused'); }).catch(()=>{});
     }
+  });
+  audio.addEventListener('ended', function(){
+    const nextIndex = (parseInt(trackSelect.value, 10) + 1) % tracks.length;
+    trackSelect.value = nextIndex;
+    audioSource.src = tracks[nextIndex];
+    audio.load();
+    audio.play().then(()=>{ isPlaying = true; musicFab.classList.remove('paused'); }).catch(()=>{});
   });
 
   fetch('https://api.countapi.xyz/hit/hoangquang-kieudiem-wedding-2026/visits')
